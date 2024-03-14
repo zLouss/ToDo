@@ -22,7 +22,20 @@ export default class ListaTarefa {
         return this.#filtroUtilizado
     }
 
-    filtrarAtivas() {
+    adicionarTarefa(novaTarefa: Tarefa): ListaTarefa {
+        const todas = [...this.#todas]
+        todas.push(novaTarefa)
+        return new ListaTarefa(todas, this.filtroUtilizado)
+    }
+
+    modificarTarefa(tarefaModificada: Tarefa): ListaTarefa {
+        const todas = this.#todas.map(tarefa => {
+            return tarefa.id === tarefaModificada.id ? tarefaModificada : tarefa
+        })
+        return new ListaTarefa(todas, this.filtroUtilizado)
+    }
+
+    filtrarAtivas(): ListaTarefa {
         if(!this.exibindoSomenteAtivas()) {
             return new ListaTarefa(this.#todas, TipoFiltro.ATIVAS)
         } else {
@@ -30,12 +43,12 @@ export default class ListaTarefa {
         }
     }
 
-    excluirConcluidas() {
+    excluirConcluidas(): ListaTarefa {
         const somenteAtivas = this.#todas.filter(tarefa => tarefa.ativa)
         return new ListaTarefa(somenteAtivas, TipoFiltro.NENHUM)
     }
     
-    filtrarConcluidas() {
+    filtrarConcluidas(): ListaTarefa {
         if(!this.exibindoSomenteConcluidas()) {
             return new ListaTarefa(this.#todas, TipoFiltro.CONCLUIDAS)
         } else {
@@ -43,7 +56,7 @@ export default class ListaTarefa {
         }
     }
 
-    removerFiltro() {
+    removerFiltro(): ListaTarefa {
         if(!this.exibindoTodas()) {
             return new ListaTarefa(this.#todas, TipoFiltro.NENHUM)
         } else {

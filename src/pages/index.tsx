@@ -1,29 +1,15 @@
-import Tarefa from "@/model/Tarefa"
-import tarefasIniciais from "@/data/mock"
+import Selecao from "@/components/lista/Selecao"
+import ListaItem from "@/components/lista/ListaItem"
 
 export default function Home() {
 
-	let tarefas = tarefasIniciais
-
-	tarefas = tarefas.filtrarConcluidas()
-	tarefas = tarefas.excluirConcluidas()
-
-	function renderizarTarefas() {
-		return tarefas.itens.map(tarefa => {
-			return (
-				<div key={tarefa.id}>
-					<span>{tarefa.id} | </span>
-					<span> {tarefa.descricao} | </span>
-					<span> {tarefa.concluida ? 'Concluída' : 'Ativa'}</span>
-				</div>
-			)
-		})
-	}
-
 	return (
 		<div className="flex flex-col justify-center items-center h-screen
-			text-white bg-gradient-to-tr from-purple-500 to-yellow-600">
-			{renderizarTarefas()}
+			text-white bg-gradient-to-tr from-gray-600 to-gray-900">
+			<ul>
+				<ListaItem valor="Exemplo de Item #01" concluido={false} alterarStatus={() => { }} />
+                <ListaItem valor="Exemplo de Item #02" concluido={true} alterarStatus={() => { }} />
+			</ul>
 		</div>
 	)
 }
