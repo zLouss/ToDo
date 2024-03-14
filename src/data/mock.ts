@@ -1,4 +1,4 @@
-import ListaTarefas from "@/model/ListaTarefa";
+import ListaTarefa from "@/model/ListaTarefa";
 import Tarefa from "@/model/Tarefa";
 import TipoFiltro from "@/model/TipoFiltro";
 
@@ -9,4 +9,4 @@ const tarefasInicias: Tarefa[] = [
     Tarefa.criarAtiva(3, 'Comprar livro do mês')
 ]
 
-export default new ListaTarefas(tarefasInicias, TipoFiltro.NENHUM)
+export default new ListaTarefa(tarefasInicias, TipoFiltro.NENHUM)
